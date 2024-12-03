@@ -9,4 +9,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  # get '/property/:id', to: 'properties#show', as: 'show'
+  resources :properties
 end
