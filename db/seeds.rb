@@ -19,7 +19,7 @@ puts 'Creating 10 fake properties...'
 10.times do
   property = Property.new(
     name:    Faker::Company.name,
-    rating: rand(0..5),
+    rating: rand(1..5),
     location: "#{Faker::Address.street_address}, #{Faker::Address.city}"
   )
   property.save!
