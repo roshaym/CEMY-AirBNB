@@ -1,8 +1,13 @@
 <h1 class="mb-4">Listings</h1>
 
-<!-- Button to navigate to the new listing page -->
-<div class="mb-3">
-  <%= link_to 'Add New Listing', new_listing_path, class: 'btn btn-primary' %>
+<!-- Container for the buttons -->
+<div class="container mb-4">
+  <div class="d-flex">
+    <!-- Button to navigate to the new listing page -->
+    <%= link_to 'Add New Listing', new_listing_path, class: 'btn btn-primary me-3' %>
+    <!-- Button to navigate to the landing page -->
+    <%= link_to 'Back to Home', root_path, class: 'btn btn-secondary' %>
+  </div>
 </div>
 
 <div class="container">
