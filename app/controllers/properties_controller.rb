@@ -5,13 +5,9 @@ class PropertiesController < ApplicationController
       @properties = @properties.where("location ILIKE ?", "%#{params[:query]}%")
     end
   end
-
-  # def search
-  #   if params[:query]
-  #     @property = @properties.select { |property| property.location.start_with?(params[:query]) }
-  #   end
-
-  # end
+  def show
+    @property = Property.find(params[:id])
+  end
 
   private
 

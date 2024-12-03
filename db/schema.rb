@@ -41,6 +41,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_03_110807) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "listings", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.decimal "price"
+    t.string "location"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_listings_on_user_id"
+  end
+
   create_table "reviews", force: :cascade do |t|
     t.integer "rating"
     t.string "comment"
