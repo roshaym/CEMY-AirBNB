@@ -1,15 +1,36 @@
 class PropertiesController < ApplicationController
   before_action :set_property, only: %i[show edit update destroy]
+  
   def index
     @properties = Property.all
 
     @markers = @properties.geocoded.map do |flat|
       {
         lat: flat.latitude,
-        lng: flat.longitude
+        lng: flat.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: {flat: flat})
       }
     end
-  
+
+    if params[:query].present?
+      @properties = @properties.where("address ILIKE ?", "%#{params[:query]}%")
+    end
+  end
+  def show
+    @property = Property.find(params[:id])
+  end
+
+  def home
+    @properties = Property.all
+
+    @markers = @properties.geocoded.map do |flat|
+      {
+        lat: flat.latitude,
+        lng: flat.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: {flat: flat})
+      }
+    end
+
     if params[:query].present?
       @properties = @properties.where("address ILIKE ?", "%#{params[:query]}%")
     end
