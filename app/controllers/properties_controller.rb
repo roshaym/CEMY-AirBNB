@@ -2,8 +2,16 @@ class PropertiesController < ApplicationController
   before_action :set_property, only: %i[show edit update destroy]
   def index
     @properties = Property.all
+
+    @markers = @properties.geocoded.map do |flat|
+      {
+        lat: flat.latitude,
+        lng: flat.longitude
+      }
+    end
+  
     if params[:query].present?
-      @properties = @properties.where("location ILIKE ?", "%#{params[:query]}%")
+      @properties = @properties.where("address ILIKE ?", "%#{params[:query]}%")
     end
   end
   def show
@@ -51,7 +59,7 @@ class PropertiesController < ApplicationController
   end
 
   def property_params
-    params.require(:property).permit(:name, :description, :price_per_night, :location)
+    params.require(:property).permit(:name, :description, :price_per_night, :address)
   end
 
 end
