@@ -6,7 +6,6 @@ class CreateProperties < ActiveRecord::Migration[7.1]
       t.string :location
       t.string :price_per_night
       t.string :availability
-      t.text :description
 
       t.timestamps
     end
