@@ -17,6 +17,7 @@
       <p><%= @property.description %></p>
       <h4>Price: $<%= @property.price_per_night %></h4>
       <h5>Address: <%= @property.address %></h5>
+      <h5>Rating: <%= @property.rating %></h5>
       <a href="<%= edit_property_path(@property) %>" class="btn btn-warning mt-3">Edit Property</a>
       <%= link_to 'Back to Properties', properties_path, class: 'btn btn-secondary mt-3' %>
     </div>
