@@ -33,7 +33,7 @@ puts 'Creating 10 fake properties...'
     rating: rand(1..5),
     address: "#{Faker::Address.street_address}, #{Faker::Address.city}",
     user: user, # Pass the actual User instance
-    image_url:image_url: "https://loremflickr.com/300/200/hotel,holiday,vacation?random=#{Faker::Number.unique.number(digits: 5)}"
+    image_url: "https://loremflickr.com/300/200/hotel,holiday,vacation?random=#{rand(1..5)}"
 
   )
   property.save!
@@ -41,19 +41,4 @@ end
 
 puts "Finished! Created #{Property.count} properties."
 p Property.all
-Property.create([
-  {
-    name: "Beach House",
-    location: "Malibu, CA",
-    price_per_night: 350,
-    image_url: "https://media.istockphoto.com/id/687073392/de/vektor/3d-rendering-des-modernen-gem%C3%BCtlichen-haus-im-chalet-stil.jpg?s=2048x2048&w=is&k=20&c=voUVN30pCpjlyvvlP3PwcqwJRgbcLAu5HW1J01iPTY8=",
-    rating: 4.5
-  },
-  {
-    name: "Mountain Cabin",
-    location: "Aspen, CO",
-    price_per_night: 250,
-    image_url: "https://media.istockphoto.com/id/464474232/de/foto/esszimmer-room.jpg?s=2048x2048&w=is&k=20&c=toM3aIPKRPB6dUfYA2j6akezQ_LI7Vfc2ctqlfd5eCI=",
-    rating: 4.8
-  }
-])
+
