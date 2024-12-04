@@ -32,10 +32,13 @@ puts 'Creating 10 fake properties...'
     description: Faker::Lorem.paragraph,
     rating: rand(1..5),
     address: "#{Faker::Address.street_address}, #{Faker::Address.city}",
-    user: user # Pass the actual User instance
+    user: user, # Pass the actual User instance
+    image_url: "https://loremflickr.com/300/200/hotel,holiday,vacation?random=#{rand(1..5)}"
+
   )
   property.save!
 end
 
 puts "Finished! Created #{Property.count} properties."
 p Property.all
+
