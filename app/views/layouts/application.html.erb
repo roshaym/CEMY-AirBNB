@@ -13,12 +13,17 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   </head>
 
-  <body>
-      <% if show_navbar? %>
-        <%= render "shared/navbar" %>
-      <% end %>
-      <%= render "shared/flashes" %>
+  <body class="d-flex flex-column min-vh-100">
+    <% if show_navbar? %>
+      <%= render "shared/navbar" %>
+    <% end %>
+    
+    <%= render "shared/flashes" %>
+    
+    <main class="flex-grow-1">
       <%= yield %>
-      <%= render "shared/footer" %>
+    </main>
+    
+    <%= render "shared/footer" %>
   </body>
 </html>
