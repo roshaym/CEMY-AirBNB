@@ -1,0 +1,20 @@
+<%= form_with model: @user, local: true, html: { multipart: true } do |form| %>
+  <div class="field">
+    <%= form.label :name, "Name" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email, "Email" %>
+    <%= form.email_field :email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :profile_picture, "Profile Picture" %>
+    <%= form.file_field :profile_picture %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Save" %>
+  </div>
+<% end %>
