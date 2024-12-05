@@ -12,6 +12,19 @@
 
 # Use this setup block to configure all options available in SimpleForm.
 SimpleForm.setup do |config|
+  config.button_class = 'btn btn-primary'
+  config.boolean_label_class = 'form-check-label'
+  
+  config.wrappers :horizontal_boolean, tag: 'div', class: 'form-group form-check', error_class: 'has-error' do |b|
+    b.use :html5
+    b.optional :readonly
+    b.use :label, class: 'form-check-label'
+    b.use :input, class: 'form-check-input'
+    b.use :error, wrap_with: { tag: 'span', class: 'help-block' }
+    b.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
+  end
+
+  
   # Default class for buttons
   config.button_class = 'btn'
 
