@@ -1,4 +1,4 @@
-# This file ensures the existence of required records to run the application 
+# This file ensures the existence of required records to run the application
 # in every environment (production, development, test).
 # The code here is idempotent and can be executed at any point in every environment.
 # Load data with bin/rails db:seed or db:setup
@@ -14,7 +14,7 @@ require 'faker'
 
 puts 'Creating users...'
 user = User.first || User.create!(
-  email: 'admin@cemy.com', 
+  email: 'admin@cemy.com',
   password: 'admin@cemy.com'
 )
 
@@ -39,10 +39,11 @@ puts 'Creating 10 fake properties...'
     price_per_night: rand(50..500),
     rating: rand(1..5),
     address: "#{Faker::Address.street_address}, #{Faker::Address.city}",
+    price_per_night: rand(50..500),
     user: user,
     image_url: PROPERTY_IMAGES[index % PROPERTY_IMAGES.length]
   )
-  
+
   property.save!
 end
 

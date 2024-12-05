@@ -1,0 +1,38 @@
+<h1>Book <%= @property.name %></h1>
+
+<%= form_with(model: [ @property, @booking ], local: true) do |form| %>
+  <!-- Display errors if any -->
+  <% if @booking.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
+      <ul>
+        <% @booking.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <!-- Form fields for check_in and check_out -->
+  <div class="form-group">
+    <%= form.label :check_in %>
+    <%= form.date_field :check_in, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :check_out %>
+    <%= form.date_field :check_out, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :number_of_guests %>
+    <%= form.number_field :number_of_guests, class: 'form-control', min: 1 %>
+  </div>
+
+  <!-- Submit button -->
+  <%= form.submit 'Confirm Booking', class: 'btn btn-success' %>
+
+<% end %>
+
+<!-- Link to go back to the property page -->
+<%= link_to 'Back to Property', @property, class: 'btn btn-secondary mt-3' %>

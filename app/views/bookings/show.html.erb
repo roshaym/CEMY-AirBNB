@@ -1,0 +1,5 @@
+<h1>Booking Confirmation</h1>
+<p>Property: <%= @booking.property.name %></p>
+<p>Check-in Date: <%= @booking.check_in_date %></p>
+<p>Check-out Date: <%= @booking.check_out_date %></p>
+<p>Total Price: <%= number_to_currency(@booking.total_price) %></p>
