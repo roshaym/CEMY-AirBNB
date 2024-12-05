@@ -14,7 +14,8 @@ class PropertiesController < ApplicationController
         lat: property.latitude,
         lng: property.longitude,
         info_window_html: render_to_string(partial: "info_window", locals: {property: property}),
-        price_per_night: property.price_per_night 
+        price_per_night: property.price_per_night,
+        marker_html: render_to_string(partial: "marker", locals: { property: property })
       }
     end
 
@@ -41,7 +42,9 @@ class PropertiesController < ApplicationController
     @markers = [{
       lat: @property.latitude,
       lng: @property.longitude,
-      info_window_html: render_to_string(partial: "info_window", locals: {property: @property})
+      info_window_html: render_to_string(partial: "info_window", locals: {property: @property}),
+      price_per_night: @property.price_per_night,
+      marker_html: render_to_string(partial: "marker", locals: { property: @property })
     }]
   end
 
