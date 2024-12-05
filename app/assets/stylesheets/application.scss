@@ -12,3 +12,73 @@
 @import "pages/index";
 
 @import url("https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.css");
+
+
+/* Custom styles for the outer container */
+.search-bar-container {
+  background-color: #f8f8f8; /* Light background color */
+  padding: 20px; /* Padding around the search bar */
+  border-radius: 50px; /* Rounded corners for the outer container */
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  width: 100%; /* Full width of the parent container */
+  max-width: 900px; /* Adjust this max-width to change how wide the entire search bar gets */
+}
+
+
+.search-bar-container .search-bar {
+  background-color: white; /* Set the inner search bar to be white */
+  border-radius: 50px; /* Rounded inner edges */
+  box-shadow: none; /* Remove shadow from the inner search bar */
+}
+
+/* Custom orange button color */
+.search-bar .btn {
+  background-color: #ff7f32; /* Custom orange */
+  color: white;
+  border: none; /* Remove border */
+}
+
+.search-bar .btn:hover {
+  background-color: #e56e29; /* Darker orange on hover */
+}
+
+
+/* Custom Card Styles */
+.card {
+  transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-5px); /* Lift the card on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-img-top {
+  object-fit: cover;
+  height: 200px;
+}
+
+.card-body {
+  padding: 15px;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.card-text {
+  font-size: 1rem;
+  color: #777;
+}
+
+.card-footer {
+  background-color: #f7f7f7;
+}
+
+
+
+/* Add this to your CSS file */
+.home-page-bg {
+  background-color: #fbfbfb; /* Light orange color */
+}

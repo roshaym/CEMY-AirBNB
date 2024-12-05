@@ -10,9 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_12_04_132106) do
+ActiveRecord::Schema[7.1].define(version: 2024_12_04_214815) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bookingfeatures", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "property_id", null: false
+    t.date "check_in_date"
+    t.date "check_out_date"
+    t.decimal "total_price"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["property_id"], name: "index_bookingfeatures_on_property_id"
+    t.index ["user_id"], name: "index_bookingfeatures_on_user_id"
+  end
 
   create_table "bookings", force: :cascade do |t|
     t.date "check_in"
@@ -21,7 +34,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_04_132106) do
     t.bigint "property_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "number_of_guests"
+    t.bigint "user_id"
     t.index ["property_id"], name: "index_bookings_on_property_id"
+    t.index ["user_id"], name: "index_bookings_on_user_id"
   end
 
   create_table "favourites", force: :cascade do |t|
@@ -43,6 +59,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_04_132106) do
     t.bigint "user_id"
     t.float "latitude"
     t.float "longitude"
+    t.string "image_url"
     t.index ["user_id"], name: "index_properties_on_user_id"
   end
 
@@ -69,6 +86,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_04_132106) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "bookingfeatures", "properties"
+  add_foreign_key "bookingfeatures", "users"
   add_foreign_key "bookings", "properties"
   add_foreign_key "favourites", "properties"
   add_foreign_key "reviews", "properties"

@@ -1,11 +1,76 @@
-<h1>Airbnb</h1>
-<p>Find a place to stay</p>
-
-<form novalidate="novalidate" class="simple_form search" action="<%= properties_path %>" accept-charset="UTF-8" method="get">
-  <div class="search-form-control form-group">
-    <input class="form-control string required" type="text" name="query" id="search_query" />
-    <button name="button" type="submit" class="btn btn-flat" properties_path>
-      <i class="fas fa-search"></i> Search
-    </button>
+<div class="d-flex justify-content-center align-items-center" style="height: 20vh;">
+  <div class="text-center">
+    <h1>Welcome to Flat Rent</h1>
+    <p>Stay Close to the Fun, Far from the Ordinary</p>
   </div>
-</form>
+</div>
+
+<body class="home-page-bg">
+<!-- Outer container with rounded background -->
+<div class="search-bar-container d-flex justify-content-center align-items-center p-4 mx-auto" style="margin-bottom: 50px;">
+  <!-- Search Form -->
+  <form class="search-bar d-flex justify-content-center align-items-center w-100 w-lg-60 rounded-pill shadow-sm" action="<%= properties_path %>" method="get">
+    <div class="input-group w-100 rounded-pill">
+      <!-- Location Input -->
+      <input type="text" class="form-control rounded-start-pill border-0" placeholder="Where are you going?" name="location" id="search_location" required>
+
+      <!-- Check-in Date -->
+      <input type="date" class="form-control border-0" name="check_in" id="search_check_in" required>
+
+      <!-- Check-out Date -->
+      <input type="date" class="form-control border-0" name="check_out" id="search_check_out" required>
+
+      <!-- Number of Guests -->
+      <select class="form-select border-0" name="guests" id="search_guests" required>
+        <option value="1">1 Guest</option>
+        <option value="2">2 Guests</option>
+        <option value="3">3 Guests</option>
+        <option value="4">4 Guests</option>
+        <option value="5">5 Guests</option>
+        <option value="6">6 Guests</option>
+        <option value="7">7 Guests</option>
+        <option value="8">8 Guests</option>
+        <option value="9">9 Guests</option>
+        <option value="10">10 Guests</option>
+      </select>
+
+      <!-- Search Button with Orange Color -->
+      <button class="btn bg-warning text-white rounded-end-pill" type="submit">
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
+  </form>
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <% @properties.each do |property| %>
+      <div class="col-md-4 mb-4">
+        <%= link_to property_path(property) do %>
+          <div class="card shadow-sm rounded">
+            <!-- Property Image -->
+            <% if property.image_url.present? %>
+              <img src="<%= property.image_url %>" class="card-img-top rounded-top" alt="<%= property.name %>">
+            <% else %>
+              <img src="https://via.placeholder.com/300" class="card-img-top rounded-top" alt="<%= property.name %>">
+            <% end %>
+
+            <div class="card-body">
+              <!-- Property Name -->
+              <h5 class="card-title"><%= property.name %></h5>
+              <!-- Property Price -->
+              <p class="card-text text-muted">
+                <%= number_to_currency(property.price_per_night, unit: "$", delimiter: ",", precision: 2) %> per night
+              </p>
+              <div class="d-flex align-items-center">
+                <i class="fas fa-star text-warning"></i>
+                <span class="ml-2"><%= property.rating %> / 5</span>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
