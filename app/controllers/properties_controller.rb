@@ -56,10 +56,6 @@ class PropertiesController < ApplicationController
     if @property.save
       redirect_to @property, notice: 'Property was successfully created.'
     else
-      # Rails.logger.debug @property.errors.full_messages.inspect
-      # Rails.logger.debug "Current User: #{current_user.inspect}"
-      # Rails.logger.debug "@property.user_id: #{@property.user_id.inspect}"
-      # puts @property.errors.full_messages
       render :new
     end
   end
