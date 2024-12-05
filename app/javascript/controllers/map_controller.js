@@ -22,7 +22,28 @@ export default class extends Controller {
   #addMarkersToMap() {
     this.markersValue.forEach((marker) => {
       const popup = new mapboxgl.Popup().setHTML(marker.info_window_html)
-      new mapboxgl.Marker()
+
+      const price = marker.price_per_night;
+
+      // Create a custom link-style marker
+      const markerElement = document.createElement('a');
+      markerElement.className = 'custom-marker-link';
+      markerElement.href = `/properties/${marker.id}`; // Link to the property page
+      markerElement.style.display = 'flex';
+      markerElement.style.alignItems = 'center';
+      markerElement.style.justifyContent = 'center';
+      markerElement.style.backgroundColor = '#ff6347'; // Custom color
+      markerElement.style.borderRadius = '50%';
+      markerElement.style.width = '50px';
+      markerElement.style.height = '50px';
+      markerElement.style.color = 'white';
+      markerElement.style.fontSize = '12px';
+      markerElement.style.textDecoration = 'none'; // Remove underline from link
+      markerElement.style.textAlign = 'center';
+      markerElement.innerHTML = `$${price}`;
+
+      // Create the Mapbox marker using the custom element
+      new mapboxgl.Marker(markerElement)
         .setLngLat([ marker.lng, marker.lat ])
         .setPopup(popup)
         .addTo(this.map)

@@ -1,4 +1,4 @@
-
-<h2><%= flat.name %></h2>
-<p><%= flat.address %></p>
-<p><%= link_to "More information", @property_path %></p>
+<h2><%= property.name %></h2>
+<p><%= property.address %></p>
+<p>Price per night: <%= number_to_currency(property.price_per_night) %></p>
+<%= link_to 'View Property', property_path(property), class: 'btn btn-primary' %>

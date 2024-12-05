@@ -5,30 +5,29 @@ class PropertiesController < ApplicationController
   def index
     @properties = Property.all
 
-    @markers = @properties.geocoded.map do |flat|
+    if params[:query].present?
+      @properties = @properties.where("address ILIKE :query OR name ILIKE :query", query: "%#{params[:query]}%")
+    end
+
+    @markers = @properties.geocoded.map do |property|
       {
-        lat: flat.latitude,
-        lng: flat.longitude,
-        info_window_html: render_to_string(partial: "info_window", locals: {flat: flat})
+        lat: property.latitude,
+        lng: property.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: {property: property}),
+        price_per_night: property.price_per_night 
       }
     end
 
-    if params[:query].present?
-      @properties = @properties.where("address ILIKE ?", "%#{params[:query]}%")
-    end
-  end
-  def show
-    @property = Property.find(params[:id])
   end
 
   def home
     @properties = Property.all
 
-    @markers = @properties.geocoded.map do |flat|
+    @markers = @properties.geocoded.map do |property|
       {
-        lat: flat.latitude,
-        lng: flat.longitude,
-        info_window_html: render_to_string(partial: "info_window", locals: {flat: flat})
+        lat: property.latitude,
+        lng: property.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: {property: property})
       }
     end
 
@@ -38,6 +37,12 @@ class PropertiesController < ApplicationController
   end
   def show
     @property = Property.find(params[:id])
+
+    @markers = [{
+      lat: @property.latitude,
+      lng: @property.longitude,
+      info_window_html: render_to_string(partial: "info_window", locals: {property: @property})
+    }]
   end
 
   def new
