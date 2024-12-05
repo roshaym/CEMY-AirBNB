@@ -1,0 +1,36 @@
+<h1 class="text-center my-4">Airbnb</h1>
+<p class="text-center text-muted">Find a place to stay</p>
+
+<div class="container">
+  <!-- Search Form -->
+  <form novalidate="novalidate" class="search" action="<%= properties_path %>" accept-charset="UTF-8" method="get">
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-4 mb-3">
+        <div class="input-group">
+          <input 
+            class="form-control" 
+            type="text" 
+            name="query" 
+            id="search_query" 
+            placeholder="Search for a location"
+          />
+          <button class="btn btn-primary" type="submit">
+            <i class="fas fa-search"></i> Search
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <!-- Map Section -->
+  <div class="row">
+    <div class="col-12">
+      <div class="map-container rounded" 
+        style="width: 100%; height: 600px; border: 1px solid #ddd;" 
+        data-controller="map"
+        data-map-markers-value="<%= @markers.to_json %>"
+        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+      </div>
+    </div>
+  </div>
+</div>
