@@ -28,8 +28,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_04_214815) do
   end
 
   create_table "bookings", force: :cascade do |t|
-    t.date "check_in"
-    t.date "check_out"
+    t.date "start_date"
+    t.date "end_date"
     t.string "booking_status"
     t.bigint "property_id", null: false
     t.datetime "created_at", null: false

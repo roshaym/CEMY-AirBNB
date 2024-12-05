@@ -32,6 +32,7 @@ puts 'Creating 10 fake properties...'
     description: Faker::Lorem.paragraph,
     rating: rand(1..5),
     address: "#{Faker::Address.street_address}, #{Faker::Address.city}",
+    price_per_night: rand(50..500),
     user: user # Pass the actual User instance
   )
   property.save!
