@@ -40,7 +40,8 @@ puts 'Creating 10 fake properties...'
     rating: rand(1..5),
     address: "#{Faker::Address.street_address}, #{Faker::Address.city}",
     price_per_night: rand(50..500),
-    user: user # Pass the actual User instance
+    user: user,
+    image_url: PROPERTY_IMAGES[index % PROPERTY_IMAGES.length]
   )
 
   property.save!
