@@ -5,4 +5,4 @@ import "@popperjs/core"
 import "bootstrap"
 
 // Import the booking modal JavaScript
-import "booking_modal"
+import './booking_modal'

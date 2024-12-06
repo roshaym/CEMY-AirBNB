@@ -6,7 +6,7 @@ class Property < ApplicationRecord
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
 
-  validates :name, :description, :price_per_night, :rating, :address, presence: true
+  validates :name, :price_per_night, :rating, :address, presence: true
 
   # Replace the previous validation with these
   validate :acceptable_image
