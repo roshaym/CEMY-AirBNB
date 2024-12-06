@@ -4,8 +4,8 @@
   <div class="row">
     <!-- Property Image Section -->
     <div class="col-md-6">
-      <% if @property.image_url.present? %>
-        <img src="<%= @property.image_url %>" class="img-fluid mb-3" alt="<%= @property.name %>">
+      <% if @property.image.attached? %>
+        <%= image_tag @property.image, class: "img-fluid mb-3", alt: @property.name %>
       <% else %>
         <img src="https://via.placeholder.com/500" class="img-fluid mb-3" alt="Default property image">
       <% end %>
