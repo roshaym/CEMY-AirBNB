@@ -11,6 +11,7 @@ if Rails.env.development?
 end
 
 require 'faker'
+require 'open-uri'
 
 puts 'Creating users...'
 user = User.first || User.create!(
@@ -31,19 +32,36 @@ PROPERTY_IMAGES = [
   'https://images.unsplash.com/photo-1529408686214-b48b8532f72c',
   'https://images.unsplash.com/photo-1497898871738-28f5fb9b275c'
 ]
+
 puts 'Creating 10 fake properties...'
 10.times do |index|
+  # Create a new property
   property = Property.new(
-    name: Faker::Company.name,
+    name: Faker::Address.street_name,
     description: Faker::Lorem.paragraph,
     price_per_night: rand(50..500),
     rating: rand(1..5),
     address: "#{Faker::Address.street_address}, #{Faker::Address.city}",
-    price_per_night: rand(50..500),
-    user: user,
-    image_url: PROPERTY_IMAGES[index % PROPERTY_IMAGES.length]
+    user: user
   )
 
+  # Download and attach the image
+  begin
+    # Download the image from the URL
+    downloaded_image = URI.open(PROPERTY_IMAGES[index % PROPERTY_IMAGES.length])
+
+    # Attach the image to the property
+    property.image.attach(
+      io: downloaded_image,
+      filename: "property_#{index}.jpg",
+      content_type: 'image/jpeg'
+    )
+  rescue OpenURI::HTTPError => e
+    puts "Could not download image for property #{index}: #{e.message}"
+    # Optionally, you could use a placeholder or skip image attachment
+  end
+
+  # Save the property
   property.save!
 end
 

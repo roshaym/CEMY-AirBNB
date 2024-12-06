@@ -19,10 +19,10 @@
         <!-- Wrap the entire card in a clickable link -->
         <a href="<%= property_path(property) %>" class="text-decoration-none">
           <div class="card">
-            <% if property.image_url.present? %>
-              <img src="<%= property.image_url %>" class="card-img-top" alt="<%= property.name %>">
+            <% if property.image.attached? %>
+              <%= cl_image_tag property.image.key, class: "card-img-top rounded-top", alt: property.name %>
             <% else %>
-              <img src="https://via.placeholder.com/300" class="card-img-top" alt="Default property image">
+              <img src="https://via.placeholder.com/300" class="card-img-top rounded-top" alt="<%= property.name %>">
             <% end %>
             <div class="card-body">
               <h5 class="card-title"><%= property.name %></h5>
@@ -46,7 +46,6 @@
     <% end %>
   </div>
 </div>
-
 
     <div style="width: 100%; height: 600px;"
       data-controller="map"

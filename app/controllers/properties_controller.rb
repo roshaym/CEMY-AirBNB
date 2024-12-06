@@ -5,38 +5,48 @@ class PropertiesController < ApplicationController
   def index
     @properties = Property.all
 
-    @markers = @properties.geocoded.map do |flat|
+    if params[:query].present?
+      @properties = @properties.where("address ILIKE :query OR name ILIKE :query", query: "%#{params[:query]}%")
+    end
+
+    @markers = @properties.geocoded.map do |property|
       {
-        lat: flat.latitude,
-        lng: flat.longitude,
-        info_window_html: render_to_string(partial: "info_window", locals: {flat: flat})
+        lat: property.latitude,
+        lng: property.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: {property: property}),
+        price_per_night: property.price_per_night,
+        marker_html: render_to_string(partial: "marker", locals: { property: property })
       }
     end
 
-    if params[:query].present?
-      @properties = @properties.where("address ILIKE ?", "%#{params[:query]}%")
-    end
-  end
-
-  def show
-    @property = Property.find(params[:id])
-    @booking = @property.bookings.build  # Initialize @booking for the form
   end
 
   def home
     @properties = Property.all
 
-    @markers = @properties.geocoded.map do |flat|
+    @markers = @properties.geocoded.map do |property|
       {
-        lat: flat.latitude,
-        lng: flat.longitude,
-        info_window_html: render_to_string(partial: "info_window", locals: {flat: flat})
+        lat: property.latitude,
+        lng: property.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: {property: property})
       }
     end
 
     if params[:query].present?
       @properties = @properties.where("address ILIKE ?", "%#{params[:query]}%")
     end
+  end
+  def show
+    @property = Property.find(params[:id])
+    @booking = @property.bookings.build  # Initialize @booking for the form
+
+    @markers = [{
+      lat: @property.latitude,
+      lng: @property.longitude,
+      info_window_html: render_to_string(partial: "info_window", locals: {property: @property}),
+      price_per_night: @property.price_per_night,
+      marker_html: render_to_string(partial: "marker", locals: { property: @property })
+    }]
   end
 
   def new
@@ -89,7 +99,7 @@ class PropertiesController < ApplicationController
   end
 
   def property_params
-    params.require(:property).permit(:name, :description, :price_per_night, :address, :user_id, :image_url)
+    params.require(:property).permit(:name, :description, :price_per_night, :address, :image)
   end
 
 end
