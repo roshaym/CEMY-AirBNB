@@ -1,51 +1,66 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <%= link_to "/", class: "navbar-brand" do %>
-      <%= image_tag asset_path("logo.png"), alt: "Airbnb Logo" %>
+    <%= link_to root_path, class: "navbar-brand" do %>
+      <%= image_tag asset_path("logo.png"), alt: "Logo", class: "img-fluid", style: "max-height: 40px;" %>
     <% end %>
-  </div>
 
-  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav me-auto">
-      <% if user_signed_in? %>
-        <li class="nav-item">
-          <%= link_to "Add a new property", new_property_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item active">
-            <%= link_to "Show all properties", properties_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item active">
-          <%= link_to "Home", "/", class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Messages", "#", class: "nav-link" %>
-        </li>
-
-        <li class="nav-item dropdown">
-          <%= link_to '#', class: 'nav-link dropdown-toggle', id: 'navbarDropdown', role: 'button', data: { bs_toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' } do %>
-            <!-- Display user's profile picture if available -->
-            <% if current_user.avatar.attached? %>
-              <%= image_tag current_user.avatar, class: 'rounded-circle', style: 'width: 30px; height: 30px;', alt: 'User Avatar' %>
-            <% else %>
-              <i class="bi bi-person-circle" style="font-size: 1.5rem;"></i>
+    <div class="collapse navbar-collapse" id="mainNavbar">
+      <ul class="navbar-nav ms-auto align-items-center">
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to new_property_path, class: "nav-link" do %>
+              <i class="fa-solid fa-house-medical me-2"></i>Add Property
             <% end %>
-          <% end %>
-          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-            <%= link_to "Action", "#", class: "dropdown-item" %>
-            <%= link_to "Another action", "#", class: "dropdown-item" %>
-            <%= link_to "Edit profile",  edit_user_path(current_user), class: "dropdown-item" %>
-            <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" %>
-          </div>
-        </li>
-      <% else %>
-        <li class="nav-item">
-          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-        </li>
-      <% end %>
-    </ul>
+          </li>
+          <li class="nav-item">
+            <%= link_to properties_path, class: "nav-link" do %>
+              <i class="fa-solid fa-list me-2"></i>Browse Properties
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to root_path, class: "nav-link" do %>
+              <i class="fa-solid fa-house me-2"></i>Dashboard
+            <% end %>
+          </li>
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <% if current_user.avatar.attached? %>
+                <%= image_tag current_user.avatar, class: "rounded-circle", style: "width: 32px; height: 32px; object-fit: cover;", alt: "Avatar" %>
+              <% else %>
+                <i class="fa-solid fa-circle-user fs-4"></i>
+              <% end %>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+              <li>
+                <%= link_to edit_user_path(current_user), class: "dropdown-item" do %>
+                  <i class="fa-solid fa-user-pen me-2"></i>Edit Profile
+                <% end %>
+              </li>
+              <li>
+                <%= link_to "#", class: "dropdown-item" do %>
+                  <i class="fa-solid fa-gear me-2"></i>Settings
+                <% end %>
+              </li>
+              <li><hr class="dropdown-divider"></li>
+              <li>
+                <%= link_to destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" do %>
+                  <i class="fa-solid fa-right-from-bracket me-2"></i>Logout
+                <% end %>
+              </li>
+            </ul>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to new_user_session_path, class: "btn btn-outline-primary" do %>
+              <i class="fa-solid fa-right-to-bracket me-2"></i>Login
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
   </div>
-</div>
+</nav>
