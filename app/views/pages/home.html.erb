@@ -50,8 +50,8 @@
         <%= link_to property_path(property) do %>
           <div class="card shadow-sm rounded">
             <!-- Property Image -->
-            <% if property.image_url.present? %>
-              <img src="<%= property.image_url %>" class="card-img-top rounded-top" alt="<%= property.name %>">
+            <% if property.image.attached? %>
+              <%= cl_image_tag property.image.key, class: "card-img-top rounded-top", alt: property.name %>
             <% else %>
               <img src="https://via.placeholder.com/300" class="card-img-top rounded-top" alt="<%= property.name %>">
             <% end %>
