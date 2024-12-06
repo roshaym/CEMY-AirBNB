@@ -1,12 +1,61 @@
+/* Navbar Styles */
 .navbar-lewagon {
-  justify-content: space-between;
+  justify-content: space-between; /* Spread navbar items across the space */
   background: white;
+  gap: 70px
 }
 
 .navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
+  flex-grow: 0; /* Prevents the navbar collapse section from growing */
 }
 
 .navbar-lewagon .navbar-brand img {
-  width: 30px;
+  width: 30px; /* Set the logo size */
+}
+
+/* Flexbox Layout for Navbar Buttons */
+.navbar-buttons {
+  display: flex; /* Use Flexbox to align items horizontally */
+  gap: 20px; /* Space between each button */
+  align-items: center; /* Vertically align the buttons */
+}
+
+/* Button Style */
+.nav-link.btn-ghost-orange {
+  color: #FFA500; /* Orange text */
+  background-color: transparent; /* Transparent background */
+  border: none; /* Remove border */
+  padding: 10px 20px; /* Padding to make it look like a button */
+  display: inline-flex; /* Align icon and text in a row */
+  align-items: center; /* Vertically align icon and text */
+  transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+
+/* On hover, active, and focus: background turns orange, text turns white */
+.nav-link.btn-ghost-orange:hover,
+.nav-link.btn-ghost-orange:focus,
+.nav-link.btn-ghost-orange:active {
+  color: white !important; /* White text */
+  background-color: #FFA500 !important; /* Orange background */
+  border-color: transparent !important; /* Ensure no border when active */
+}
+
+/* Make the icon and text larger when hovered */
+.nav-link.btn-ghost-orange:hover i {
+  transform: scale(1.1); /* Slightly increase icon size on hover */
+}
+
+/* Add margin between icon and text */
+.nav-link i {
+  margin-right: 8px; /* Space between icon and text */
+}
+
+/* Make sure nav items (buttons) are displayed inline */
+.nav-item {
+  list-style: none; /* Remove default list styling */
+}
+
+/* Optional: Hover effects for Navbar Brand */
+.navbar-brand:hover {
+  color: #FFA500; /* Optional: change color on hover */
 }

@@ -1,0 +1,31 @@
+.property-image {
+  background-size: cover;
+  background-position: center;
+  height: 200px; /* Default height */
+}
+
+.property-image.mb-3 {
+  height: 400px;  /* Larger image */
+}
+
+
+.amenities-icon {
+  color: #007bff;
+}
+
+.review-card {
+  border: 1px solid #e3e3e3;
+  border-radius: 8px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Calendar Styles */
+#calendar {
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+}

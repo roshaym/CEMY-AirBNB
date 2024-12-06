@@ -1,6 +1,6 @@
 class PropertiesController < ApplicationController
   before_action :set_property, only: %i[show edit update destroy]
-  
+
   def index
     @properties = Property.all
 
@@ -16,8 +16,10 @@ class PropertiesController < ApplicationController
       @properties = @properties.where("address ILIKE ?", "%#{params[:query]}%")
     end
   end
+
   def show
     @property = Property.find(params[:id])
+    @booking = @property.bookings.build  # Initialize @booking for the form
   end
 
   def home
@@ -34,9 +36,6 @@ class PropertiesController < ApplicationController
     if params[:query].present?
       @properties = @properties.where("address ILIKE ?", "%#{params[:query]}%")
     end
-  end
-  def show
-    @property = Property.find(params[:id])
   end
 
   def new

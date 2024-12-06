@@ -2,35 +2,51 @@
 
 <!-- Container for the buttons -->
 <div class="container mb-4">
-  <div class="d-flex">
-    <!-- Button to navigate to the new listing page -->
-    <%= link_to 'Add New Property', new_property_path, class: 'btn btn-primary me-3' %>
-    <!-- Button to navigate to the landing page -->
-    <%= link_to 'Back to Home', root_path, class: 'btn btn-secondary' %>
-  </div>
+<div class="d-flex gap-2">
+  <!-- Button to navigate to the new listing page -->
+  <%= link_to 'Add New Property', new_property_path, class: 'btn btn-warning text-white rounded-pill' %>
+
+  <!-- Button to navigate to the landing page -->
+  <%= link_to 'Back to Home', root_path, class: 'btn btn-secondary text-white rounded-pill' %>
+</div>
+
 </div>
 
 <div class="container">
   <div class="row">
     <% @properties.each do |property| %>
       <div class="col-md-4 mb-4">
-        <div class="card">
-          <% if property.image_url.present? %>
-            <img src="<%= property.image_url %>" class="card-img-top" alt="<%= property.name %>">
-          <% else %>
-            <img src="https://via.placeholder.com/300" class="card-img-top" alt="Default property image">
-          <% end %>
-          <div class="card-body">
-            <h5 class="card-title"><%= property.name %></h5>
-            <p class="card-text"><%= property.description %></p>
-            <p class="card-text"><strong>Price:</strong> $<%= property.price_per_night %></p>
-            <a href="<%= property_path(property) %>" class="btn btn-primary">View Details</a>
+        <!-- Wrap the entire card in a clickable link -->
+        <a href="<%= property_path(property) %>" class="text-decoration-none">
+          <div class="card">
+            <% if property.image_url.present? %>
+              <img src="<%= property.image_url %>" class="card-img-top" alt="<%= property.name %>">
+            <% else %>
+              <img src="https://via.placeholder.com/300" class="card-img-top" alt="Default property image">
+            <% end %>
+            <div class="card-body">
+              <h5 class="card-title"><%= property.name %></h5>
+              <p class="card-text"><%= property.description %></p>
+              <p class="card-text"><strong>Price:</strong> $<%= property.price_per_night %></p>
+
+              <!-- Rating stars -->
+              <div class="d-flex">
+                <% (1..5).each do |star| %>
+                  <% if star <= property.rating %>
+                    <i class="fas fa-star text-warning"></i> <!-- Filled star -->
+                  <% else %>
+                    <i class="fas fa-star"></i> <!-- Empty star -->
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
           </div>
-        </div>
+        </a>
       </div>
     <% end %>
   </div>
 </div>
+
 
     <div style="width: 100%; height: 600px;"
       data-controller="map"
