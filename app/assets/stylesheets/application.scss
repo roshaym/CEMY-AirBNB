@@ -82,3 +82,93 @@
 .home-page-bg {
   background-color: #fbfbfb; /* Light orange color */
 }
+
+
+
+/* Custom focus and active state for the button */
+.btn-outline-warning:focus, .btn-outline-warning:active {
+  color: white !important; /* Text color to white */
+  background-color: #FFA500 !important; /* Orange background */
+  border-color: #FFA500 !important; /* Orange border */
+}
+
+/* Optional: Hover state */
+.btn-outline-warning:hover {
+  color: white !important;
+  background-color: #FFA500 !important;
+  border-color: #FFA500 !important;
+}
+
+
+/* app/assets/stylesheets/application.css */
+
+/* Modal styles */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.4); /* Black with transparency */
+}
+
+.modal-content {
+  background-color: white;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 500px;
+}
+
+.close-btn {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* app/assets/stylesheets/application.scss */
+.rounded-img {
+  border-radius: 15px; /* For rounded edges */
+}
+
+
+
+.amenities {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.amenities i {
+  color: #e46701;
+  margin-right: 2px;
+}
+
+.amenities .fas {
+  font-size: 1.3em;
+}
+
+
+
+.property-description {
+  padding-left: 90px;
+  padding-right: 90px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.review-card {
+  margin-bottom: 40px; /* Adjust the value as needed */
+}

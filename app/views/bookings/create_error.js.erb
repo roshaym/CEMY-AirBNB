@@ -1,0 +1,7 @@
+// app/views/bookings/create_error.js.erb
+
+// Flash error message (using Turbo or regular JS)
+let errorMessage = document.createElement('div');
+errorMessage.className = 'alert alert-danger';
+errorMessage.innerText = 'There was an error with your booking. Please try again.';
+document.body.prepend(errorMessage);

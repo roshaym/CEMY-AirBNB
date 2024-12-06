@@ -38,6 +38,7 @@ class PropertiesController < ApplicationController
   end
   def show
     @property = Property.find(params[:id])
+    @booking = @property.bookings.build  # Initialize @booking for the form
 
     @markers = [{
       lat: @property.latitude,
@@ -61,7 +62,6 @@ class PropertiesController < ApplicationController
 
     @property = current_user.properties.build(property_params)
     @property.rating ||= 0
-
     if @property.save
       redirect_to @property, notice: 'Property was successfully created.'
     else

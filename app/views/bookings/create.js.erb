@@ -1,0 +1,10 @@
+// Close the modal
+document.querySelector('.modal').classList.remove('show');
+document.querySelector('.modal-backdrop').remove();
+document.body.classList.remove('modal-open');
+
+// Optionally, show a success message in the DOM (e.g., at the top of the page)
+let successMessage = document.createElement('div');
+successMessage.className = 'alert alert-success';
+successMessage.innerText = 'Booking was successfully created!';
+document.body.prepend(successMessage);
