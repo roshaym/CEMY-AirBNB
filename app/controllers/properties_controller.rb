@@ -1,4 +1,5 @@
 class PropertiesController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create]
   before_action :set_property, only: %i[show edit update destroy]
 
   def index
@@ -44,7 +45,13 @@ class PropertiesController < ApplicationController
 
   # POST > create listings
   def create
+    unless current_user
+      redirect_to login_path, alert: 'You must be logged in to create a property.'
+      return
+    end
+
     @property = current_user.properties.build(property_params)
+    @property.rating ||= 0
     if @property.save
       redirect_to @property, notice: 'Property was successfully created.'
     else
@@ -67,8 +74,11 @@ class PropertiesController < ApplicationController
 
   # DELETE listing
   def destroy
+    @property = current_user.properties.find(params[:id]) # Ensures only the owner can delete
     @property.destroy
-    redirect_to property_url, notice: 'Property was successfully destroyed.'
+    redirect_to properties_path, notice: 'Property was successfully deleted.'
+  rescue ActiveRecord::RecordNotFound
+    redirect_to properties_path, alert: 'You are not authorized to delete this property.'
   end
 
 
@@ -79,7 +89,7 @@ class PropertiesController < ApplicationController
   end
 
   def property_params
-    params.require(:property).permit(:name, :description, :price_per_night, :address)
+    params.require(:property).permit(:name, :description, :price_per_night, :address, :user_id, :image_url)
   end
 
 end
