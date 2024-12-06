@@ -53,6 +53,7 @@ class PropertiesController < ApplicationController
 
     @property = current_user.properties.build(property_params)
     @property.rating ||= 0
+
     if @property.save
       redirect_to @property, notice: 'Property was successfully created.'
     else
@@ -90,7 +91,7 @@ class PropertiesController < ApplicationController
   end
 
   def property_params
-    params.require(:property).permit(:name, :description, :price_per_night, :address, :user_id, :image_url)
+    params.require(:property).permit(:name, :description, :price_per_night, :address, :image)
   end
 
 end

@@ -15,11 +15,11 @@
     <% @properties.each do |property| %>
       <div class="col-md-4 mb-4">
         <div class="card">
-          <% if property.image_url.present? %>
-            <img src="<%= property.image_url %>" class="card-img-top" alt="<%= property.name %>">
-          <% else %>
-            <img src="https://via.placeholder.com/300" class="card-img-top" alt="Default property image">
-          <% end %>
+        <% if property.image.attached? %>
+          <%= cl_image_tag property.image.key, class: "card-img-top rounded-top", alt: property.name %>
+        <% else %>
+          <img src="https://via.placeholder.com/300" class="card-img-top rounded-top" alt="<%= property.name %>">
+        <% end %>
           <div class="card-body">
             <h5 class="card-title"><%= property.name %></h5>
             <p class="card-text"><%= property.description %></p>
