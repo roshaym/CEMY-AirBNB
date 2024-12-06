@@ -2,14 +2,14 @@ class Booking < ApplicationRecord
   belongs_to :user
   belongs_to :property
 
-  validates :check_in, :check_out, :number_of_guests, presence: true
-  validate :check_in_before_check_out
+  validates :start_date, :end_date, :number_of_guests, presence: true
+  validate :start_date_before_end_date
 
   private
 
-  def check_in_before_check_out
-    if check_in.present? && check_out.present? && check_in >= check_out
-      errors.add(:check_in, "must be before check-out date")
+  def start_date_before_end_date
+    if start_date.present? && end_date.present? && start_date >= end_date
+      errors.add(:start_date, "must be before check-out date")
     end
   end
 end

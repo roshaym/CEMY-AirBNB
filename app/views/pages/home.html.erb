@@ -12,16 +12,16 @@
   <form class="search-bar d-flex justify-content-center align-items-center w-100 w-lg-60 rounded-pill shadow-sm" action="<%= properties_path %>" method="get">
     <div class="input-group w-100 rounded-pill">
       <!-- Location Input -->
-      <input type="text" class="form-control rounded-start-pill border-0" placeholder="Where are you going?" name="location" id="search_location" required>
+      <input type="text" class="form-control rounded-start-pill border-0" placeholder="Where are you going?" name="query" id="search_query" required>
 
       <!-- Check-in Date -->
-      <input type="date" class="form-control border-0" name="check_in" id="search_check_in" required>
+      <input type="date" class="form-control border-0" name="check_in" id="search_check_in">
 
       <!-- Check-out Date -->
-      <input type="date" class="form-control border-0" name="check_out" id="search_check_out" required>
+      <input type="date" class="form-control border-0" name="check_out" id="search_check_out">
 
       <!-- Number of Guests -->
-      <select class="form-select border-0" name="guests" id="search_guests" required>
+      <select class="form-select border-0" name="guests" id="search_guests">
         <option value="1">1 Guest</option>
         <option value="2">2 Guests</option>
         <option value="3">3 Guests</option>

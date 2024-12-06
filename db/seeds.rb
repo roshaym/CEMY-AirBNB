@@ -37,7 +37,7 @@ puts 'Creating 10 fake properties...'
 10.times do |index|
   # Create a new property
   property = Property.new(
-    name: Faker::Company.name,
+    name: Faker::Address.street_name,
     description: Faker::Lorem.paragraph,
     price_per_night: rand(50..500),
     rating: rand(1..5),
